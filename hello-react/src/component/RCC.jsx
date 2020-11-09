@@ -10,6 +10,6 @@ class RCC extends Component {
   }
 }
 
-// 외부에서 이 파일의 코드를 import하여
+// 외부에서 이 파일의 코드를 import 하여
 // 사용할수 있도록 허가한다.
 export default RCC;

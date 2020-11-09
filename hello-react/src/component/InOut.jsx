@@ -4,8 +4,9 @@ import Message from "./Message";
 const InOut = () => {
   const [message, setMessage] = useState("Korea");
   const onClickEnter = () => {
-    // react에서는 변수는 절대
+    // react에서는 변수(state 변수)는 절대
     // 직접적으로 값을 변경하지 않도록 해야 한다.
+    // 값을 변경하려면
     // 반드시 setter method를 통해서 수행해야 한다.
     // message = "반갑습니다";
     setMessage("반갑습니다");

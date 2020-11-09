@@ -20,20 +20,20 @@ let str1;
 let str2 = null;
 let str3 = "";
 let str4 = 0;
-let str5 = NaN; // Not a Number : 문자열형태의 값이 숫자로 면환가능한가?
+let str5 = NaN; // Not a Number : 문자열형태의 값이 숫자로 변환가능한가?
 let str6 = undefined;
 
-// 임의의 변슈들에 담길 예정인 값중에
+// 임의의 변수들에 담길 예정인 값중에
 // 실제 문자열, 숫자 형태인 값이 담긴 변수를 찾아
-// 그 변수값을 다을 변수에 담고 싶을때
+// 그 변수값을 다른 변수에 담고 싶을때
 // if문을 사용하지 않고 || 연산자를 통하여 구현할수 있다.
 let result = str1 || str2 || str3 || str4 || str5 || str6 || "Korea";
-
-console.log(Number("문자열3", "3"));
+console.log("문자열3", Number("3"));
 console.log("문자열 3A", Number("3A"));
 
 let 어떤값 = "3A";
 if (!Number(어떤값)) {
   console.log(어떤값, "는 숫자가 아님");
 }
-console.log("pardeInt", parseInt(어떤값));
+
+console.log("parseInt", parseInt(어떤값));
