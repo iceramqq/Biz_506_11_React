@@ -18,7 +18,7 @@ function PhoneMain(props) {
    * ref 형 변수는 current 속성을 자유롭게 변화시킬수 있고
    * 값이 변화가 되어도 화면이 rendering 되지 않는다.
    */
-  const nextid = useRef(phoneBooks.length);
+  const nextid = useRef(phoneBooks.length && 0);
 
   const insertPhoneBook = (name, number) => {
     /**
@@ -92,7 +92,16 @@ function PhoneMain(props) {
     });
     setPhoneBooks(editBooks);
   };
-
+  const updateBooks = (id, name, number) => {
+    const updateBooks = phoneBooks.map((phone) => {
+      if (phone.id === Number(id)) {
+        return { ...phone, name: name, number: number, isEdit: false };
+      } else {
+        return { ...phone, isEdit: false };
+      }
+    });
+    setPhoneBooks(updateBooks);
+  };
   return (
     <div className="phoneMain">
       <h3>나만의 전화번호부</h3>
@@ -100,6 +109,7 @@ function PhoneMain(props) {
         phoneBooks={phoneBooks}
         deletePhoneBooks={deletePhoneBooks}
         editableBooks={editableBooks}
+        updateBooks={updateBooks}
       />
       <PhoneInsert insertPhoneBook={insertPhoneBook} />
     </div>

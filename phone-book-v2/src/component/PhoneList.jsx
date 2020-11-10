@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import "../css/PhoneList.css";
 
-const PhoneList = ({ phoneBooks, deletePhoneBooks, editableBooks }) => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-
+const PhoneList = ({
+  phoneBooks,
+  deletePhoneBooks,
+  editableBooks,
+  updateBooks,
+}) => {
+  /**
+   * hook 함수
+   * use*로 시작되는 함수들(useState,useRef,useEffect,useReducer)
+   *
+   * state 변수가 여러개일때는 useState를 사용하지 않고 useReducer를 사용한다
+   *
+   *
+   *
+   */
+  // const [name,number] = useState("")
+  // const [number,setNumber] = useState("")
+  const reducer = (object, action) => {
+    return { ...object, [action.name]: action.value };
+  };
+  const [state, dispatch] = useReducer(reducer, { name: "", number: "" });
+  const { name, number } = state;
   /**
    * tr tag를 클릭했을때 사용할 event 핸들러
    * tr tag를 클릭을 했지만 우리가 사용할 것은 td tag가 목적이므로
@@ -15,17 +33,21 @@ const PhoneList = ({ phoneBooks, deletePhoneBooks, editableBooks }) => {
     console.log(e.target.className);
     const className = e.target.className;
     const closest = e.target.closest("TR");
-    const name = closest.dataset.name; // data-name으로 설정된 값 가져오기
+    const data_name = closest.dataset.name; // data-name으로 설정된 값 가져오기
     const id = closest.dataset.id; // data-id로 설정된 값 가져오기
 
-    console.log(name, id);
+    console.log(data_name, id);
 
     if (className === "delete") {
-      if (window.confirm(name + "을 정말 삭제합니다!!!")) {
+      if (window.confirm(data_name + "을 정말 삭제합니다!!!")) {
         // alert(name + "데이터 삭제");
         deletePhoneBooks(id);
         return false;
       }
+    }
+    if (className === "update-ok") {
+      updateBooks(id, name, number);
+      return false;
     }
 
     console.log("go Edit");
@@ -34,14 +56,9 @@ const PhoneList = ({ phoneBooks, deletePhoneBooks, editableBooks }) => {
     editableBooks(id);
   };
 
-  const onNameChange = (e) => {
-    setName(e.target.value);
+  const onChange = (e) => {
+    dispatch(e.target);
   };
-
-  const onNumberChange = (e) => {
-    setNumber(e.target.value);
-  };
-
   /**
    * map을 사용하여 배열요소로 화면을 만들때
    * PK에 해당하는 key라는 요소를 반드시 지정해야 한다
@@ -54,9 +71,8 @@ const PhoneList = ({ phoneBooks, deletePhoneBooks, editableBooks }) => {
   const phoneList = phoneBooks.map((phone, index) => {
     if (phone.isEdit) {
       console.log(phone.name);
-      setName(phone.name);
-      setNumber(phone.number);
-
+      state.name = phone.name;
+      state.number = phone.number;
       return (
         <tr
           key={phone.id}
@@ -66,10 +82,10 @@ const PhoneList = ({ phoneBooks, deletePhoneBooks, editableBooks }) => {
         >
           <td>{index + 1}</td>
           <td>
-            <input value={name} onChange={onNameChange} />
+            <input value={name} name="name" onChange={onChange} />
           </td>
           <td>
-            <input value={number} onChange={onNumberChange} />
+            <input value={number} name="number" onChange={onChange} />
           </td>
           <td className="update-ok">&#10003;</td>
         </tr>
