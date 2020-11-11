@@ -18,9 +18,20 @@ const PhoneList = ({
    */
   // const [name,number] = useState("")
   // const [number,setNumber] = useState("")
+  /**
+   * reducer 함수
+   * useReducer로 선언된 state변수들을 통합하여 관리하는 함수이다.
+   * 이 함수는 여러가지 용도로 설정하여 만들수 있다.
+   * 이 함수가 호출될때 어떠한
+   */
   const reducer = (object, action) => {
+    if (action.type === "EDIT_FORM") {
+      return { name: action.name, number: action.number };
+    }
+    //
     return { ...object, [action.name]: action.value };
   };
+
   const [state, dispatch] = useReducer(reducer, { name: "", number: "" });
   const { name, number } = state;
   /**
@@ -30,27 +41,32 @@ const PhoneList = ({
    *
    */
   const trOnClick = (e) => {
-    console.log(e.target.className);
+    console.log("classname", e.target.className);
     const className = e.target.className;
     const closest = e.target.closest("TR");
-    const data_name = closest.dataset.name; // data-name으로 설정된 값 가져오기
+    const name = closest.childNodes[1].innerText; // closest.dataset.name; // data-name으로 설정된 값 가져오기
+    const number = closest.childNodes[2].innerText;
     const id = closest.dataset.id; // data-id로 설정된 값 가져오기
 
-    console.log(data_name, id);
+    console.log("click child", name, id);
 
     if (className === "delete") {
-      if (window.confirm(data_name + "을 정말 삭제합니다!!!")) {
+      if (window.confirm(name + "을 정말 삭제합니다!!!")) {
         // alert(name + "데이터 삭제");
         deletePhoneBooks(id);
         return false;
       }
     }
     if (className === "update-ok") {
-      updateBooks(id, name, number);
+      updateBooks(id, state.name, state.number);
       return false;
     }
 
-    console.log("go Edit");
+    console.log("go Edit", name, number);
+    if (className !== "input") {
+      dispatch({ type: "EDIT_FORM", name: name, number: number });
+    }
+
     // delete 칼럼이 아닌 부분을 클릭하면
     // edit 모드로 전환시키기
     editableBooks(id);
@@ -71,21 +87,35 @@ const PhoneList = ({
   const phoneList = phoneBooks.map((phone, index) => {
     if (phone.isEdit) {
       console.log(phone.name);
-      state.name = phone.name;
-      state.number = phone.number;
+      // 키보드로 문자열을 입력할때 화면이 renderiong 되면서
+      // 2개의 변수가 서로 초기화를 새도해버린다
+      // 이름을 변경하고
+      //
+      // state.name = phone.name;
+      // state.number = phone.number;
       return (
         <tr
           key={phone.id}
           onClick={trOnClick}
           data-id={phone.id}
-          data-name={phone.name}
+          // data-name={phone.name}
         >
           <td>{index + 1}</td>
           <td>
-            <input value={name} name="name" onChange={onChange} />
+            <input
+              value={name}
+              name="name"
+              className="input"
+              onChange={onChange}
+            />
           </td>
           <td>
-            <input value={number} name="number" onChange={onChange} />
+            <input
+              value={number}
+              name="number"
+              className="input"
+              onChange={onChange}
+            />
           </td>
           <td className="update-ok">&#10003;</td>
         </tr>

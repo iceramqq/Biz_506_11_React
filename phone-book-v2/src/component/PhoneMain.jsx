@@ -83,7 +83,7 @@ function PhoneMain(props) {
 
   const editableBooks = (id) => {
     const editBooks = phoneBooks.map((phone) => {
-      console.log("edit");
+      console.log("edit", phone);
       if (phone.id === Number(id)) {
         return { ...phone, isEdit: true };
       } else {
