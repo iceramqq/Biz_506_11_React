@@ -139,7 +139,7 @@ class BucketMain extends Component {
       if (bucket.b_id === Number(id)) {
         return {
           ...bucket,
-          b_end_date: date.toString,
+          b_end_date: date.toString(),
           b_end_check: !bucket.b_end_check,
         };
       } else {
