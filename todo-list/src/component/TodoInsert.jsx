@@ -8,7 +8,7 @@ class TodoInsert extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    // this.state.todo = e.target.value
+    // this.setState({ todo:e.target.value })
   };
 
   onCreate = (e) => {

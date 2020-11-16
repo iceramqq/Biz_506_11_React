@@ -2,6 +2,7 @@ div.form {
   display: flex;
   padding: 12px;
 }
+
 div.form input {
   flex: 1;
   font-size: 1.25rem;
@@ -13,14 +14,13 @@ div.form input {
 div.todo-insert {
   padding: 0.5rem 1rem;
   margin-left: 1rem;
-  background: cornflowerblue;
+  background: #22b8cf;
   border-radius: 5px;
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.5s;
 }
 
 div.todo-insert:hover {
-  background-color: #3dc9db;
+  background-color: #3bc9db;
 }
