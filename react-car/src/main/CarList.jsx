@@ -4,9 +4,9 @@ import CarItem from "./CarItem";
 
 class CarList extends Component {
   render() {
-    const { carList } = this.props;
+    const { carList, update } = this.props;
     const carListItem = carList.map((carList) => {
-      return <CarItem carList={carList} />;
+      return <CarItem carList={carList} update={update} />;
     });
     return (
       <table className="car-list">

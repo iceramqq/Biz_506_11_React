@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 
 class CarItem extends Component {
+  state = {
+    c_division: "",
+    c_Travel_distance: "",
+    c_cost: "",
+    c_Place: "",
+  };
   render() {
-    const { carList } = this.props;
+    const { carList, update } = this.props;
     return (
       <tr>
         <td>{carList.c_id}</td>
