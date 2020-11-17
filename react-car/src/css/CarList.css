@@ -1,0 +1,15 @@
+.car-list {
+  width: 98%;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+.car-list th,
+.car-list td {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  padding: 10px;
+}
+
+.car-list th {
+  background-color: rgb(180, 177, 177);
+}

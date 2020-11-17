@@ -4,13 +4,13 @@ import BBsItem from "./BBsItem";
 
 class BBsList extends Component {
   render() {
-    const { bbsList, fetchBBS, handleUpdate } = this.props;
+    const { bbsList, fetchBBs, handleUpdate } = this.props;
     const bbsItemList = bbsList.map((bbs, index) => (
       <BBsItem
         key={bbs.id}
         index={index}
         bbs={bbs}
-        fetchBBS={fetchBBS}
+        fetchBBs={fetchBBs}
         handleUpdate={handleUpdate}
       />
     ));

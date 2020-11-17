@@ -1,0 +1,20 @@
+div.input-form {
+  text-align: left;
+  padding: 10px;
+}
+
+div.input-form input {
+  margin: 10px;
+  padding: 10px;
+}
+
+div.input-form button {
+  padding: 10px 16px;
+  background-color: green;
+  border: none;
+  color: white;
+}
+
+div.input-form button:hover {
+  background-color: grey;
+}

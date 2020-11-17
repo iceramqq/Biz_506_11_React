@@ -1,28 +1,27 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 import axios from "axios";
-import { relativeTimeThreshold } from "moment";
 
 class BBsItem extends Component {
   handleClick = (id) => {
-    const { fetchBBS } = this.props;
+    const { fetchBBs } = this.props;
     if (window.confirm("정말 삭제합니다")) {
       axios
         .delete(`http://localhost:5000/api/delete/${id}`)
         .then((result) => {
           console.log(result);
-          fetchBBS();
+          fetchBBs();
         })
         .catch((err) => console.log(err));
     }
   };
-
   render() {
     const { index, bbs, handleUpdate } = this.props;
     return (
       <tr>
         <td>{index + 1}</td>
         <td>{bbs.b_writer}</td>
+
         <td>
           <Moment format="YYYY-MM-DD HH:mm:ss">{bbs.b_date_time}</Moment>
         </td>

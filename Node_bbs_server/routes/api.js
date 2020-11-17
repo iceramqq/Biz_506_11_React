@@ -2,10 +2,9 @@
 // import express from "express";
 // 현재 nodejs가 지원하는 문법
 const express = require("express");
-
 const router = express.Router();
-// 폴더에 index.js 파일이 잇을 경우
-// 폴더를 re
+// 폴더에 index.js 파일이 있을 경우
+// 폴더를 require() 하면 index.js파일이 읽키게 된다.
 const { bbsDao } = require("../models");
 
 router.get("/", (req, res) => {
@@ -34,7 +33,8 @@ router.get("/bbsList", (req, res) => {
  * web browser로 부터 데이터 전달받기
  * ?변수=값 : req.query.변수
  * /:변수 : req.params.변수
- *
+ * form의 input tag에서 name으로 설정된 변수 : req.body.변수
+ * ajax를 통해서 전달받은 데이터 : req.body.변수
  */
 router.post("/insert", (req, res) => {
   bbsDao
@@ -53,6 +53,7 @@ router.post("/insert", (req, res) => {
     });
 });
 
+// localhost:3000/api/view?id=10
 router.get("/view", (req, res) => {
   const b_id = req.query.id;
   bbsDao
@@ -63,7 +64,7 @@ router.get("/view", (req, res) => {
       res.json(result);
     });
 });
-
+// localhost:3000/api/view/10
 router.get("/view/:id", (req, res) => {
   const b_id = req.params.id;
   bbsDao

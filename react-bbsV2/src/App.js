@@ -1,7 +1,7 @@
 import BackImg from "./Landscape.jpg";
 import "./App.css";
 import BBsMain from "./main/BBsMain";
-import { browderRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import BBsNav from "./main/BBsNav";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       <Router>
         <BBsNav />
         <Route exact path="/" component={BBsMain} />
-        <Route exact path="/admin" component={BBsMain} />
+        <Route path="/admin" component={BBsMain} />
       </Router>
       <footer className="footer">
         <address>CopyRigh &copy; callor@callor.com</address>

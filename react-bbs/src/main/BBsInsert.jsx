@@ -12,17 +12,18 @@ class BBsInsert extends Component {
   };
 
   componentDidMount() {
-    if (this.props.bbsData.isUpdate) {
-      this.setState({ ...this.props.bbsData });
-      console.log("update");
-    }
+    // if (this.props.bbsData.isUpdate) {
+    // this.state = this.props.bbsData;
+    this.setState({ ...this.props.bbsData });
+    console.log("update");
+    // }
   }
 
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  bbssave = () => {
+  bbsSave = () => {
     const { insertURL, updateURL } = this.props;
     const url = this.state.isUpdate ? updateURL : insertURL;
     axios
@@ -58,7 +59,7 @@ class BBsInsert extends Component {
           onChange={this.handleOnChange}
           placeholder="내용"
         />
-        <button onClick={this.bbssave}>저장</button>
+        <button onClick={this.bbsSave}>저장</button>
       </div>
     );
   }
