@@ -8,6 +8,7 @@
   border-top: 1px solid;
   border-bottom: 1px solid;
   padding: 10px;
+  font-weight: bold;
 }
 
 .car-list th {
