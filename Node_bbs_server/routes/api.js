@@ -102,7 +102,8 @@ router.delete("/delete/:id", (req, res) => {
       where: { b_id: Number(b_id) },
     })
     .then((result) => {
-      res.redirect("/api/bbsList");
+      res.json(result);
+      // res.redirect("/api/bbsList");
     });
 });
 
