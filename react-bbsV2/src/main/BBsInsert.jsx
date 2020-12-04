@@ -31,19 +31,19 @@ class BBsInsert extends Component {
         <input
           name="b_writer"
           value={b_writer}
-          onChange={handleOnChange}
+          onChange={this.handleOnChange}
           placeholder="작성자"
         />
         <input
           name="b_subject"
           value={b_subject}
-          onChange={handleOnChange}
+          onChange={this.handleOnChange}
           placeholder="제목"
         />
         <input
           name="b_content"
           value={b_content}
-          onChange={handleOnChange}
+          onChange={this.handleOnChange}
           placeholder="내용"
         />
         <button onClick={() => bbsSave(this.state)}>저장</button>
